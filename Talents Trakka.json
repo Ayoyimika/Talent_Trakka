@@ -1,0 +1,4769 @@
+{
+	"info": {
+		"_postman_id": "de37a967-02dd-494d-ba3c-57c7b8f8f4c2",
+		"name": "Talents API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23241103"
+	},
+	"item": [
+		{
+			"name": "Verify Email - TEST SCRIPTS",
+			"item": [
+				{
+					"name": "Verify Email - blank fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"//Tests\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message for blank email\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"\\\"email\\\" is not allowed to be empty\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"phone\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - invalid email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"//Tests\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message for invalid email\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"\\\"email\\\" must be a valid email\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava\",\r\n  \"phone\": \"+2348130963670\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - blank email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"//Tests\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message for blank email\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"\\\"email\\\" is not allowed to be empty\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"phone\": \"+2348130963670\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - blank phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"//Tests\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message for empty phone field\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"\\\"phone\\\" is not allowed to be empty\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - invalid phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"//Tests\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message for invalid phone number\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"\\\"phone\\\" length must be at least 10 characters long\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"jhgjj\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - >15 digits phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for phone digits greater than 15\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"+23481309636708977998999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - < 15 digits phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for 1 digit phone\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - existing email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"+2348130963670\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - existing phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"+2348130963670\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email - valid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful verification\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"fieryeyes40@gmail.com\",\r\n  \"phone\": \"+2347067491498\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/verifyEmail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"verifyEmail"
+							]
+						},
+						"description": "StartFragment\n\nThis route checks if the email already exists on the platform.If it doesn't, an OTP is then sent to the email address\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP  - expired",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"fieryeyes40@gmail.com\",\r\n  \"otp\": \"407723\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/confirmOtp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"confirmOtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP  - invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"4073\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/confirmOtp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"confirmOtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP  - blank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/confirmOtp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"confirmOtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify OTP  - valid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"fieryeyes40@gmail.com\",\r\n  \"otp\": \"219245\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/confirmOtp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"confirmOtp"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify OTP  - valid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/confirmOtp",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"confirmOtp"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"40-6YZ4fhqjdd1q1zmc/TxWYRWo0iQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Sep 2022 21:32:32 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"OTP verification was successful\"\n}"
+						}
+					]
+				}
+			],
+			"description": "StartFragment\n\nThis contains test scripts for Verify email API with invalid, valid and blank detailss\n\nEndFragment"
+		},
+		{
+			"name": "Sign up - TEST SCRIPTS",
+			"item": [
+				{
+					"name": "SIgn up - blank fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank fields\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"\",\r\n  \"email\": \"\",\r\n  \"phone\": \"\",\r\n  \"track\": \"\",\r\n  \"education\": \"\",\r\n  \"otp\": \"\",\r\n  \"password\": \"\",\r\n  \"confirmPassword\": \"\",\r\n  \"residence\": \"\",\r\n  \"gender\": \"\",\r\n  \"experienceLevel\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"  var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message for blank phone\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"\\\"phone\\\" is not allowed to be empty\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank Track\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank education",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank Education\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank otp\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank password\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank confirmPassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank Confirm Password\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank gender",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank gender\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank experienceLevel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank experienceLevel\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - blank residence",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank residence\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - Invalid name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for invalid name\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"18230 332\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - Invalid email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for invalid email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@example\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - invalid phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for invalid phone\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - expired otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for expired otp\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - invalid otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for invalid otp\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - unmatching password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for unmatching password\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"email\": \"abc@examples.com\",\r\n  \"phone\": \"+15555555555\",\r\n  \"track\": \"Product Design\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"123456\",\r\n  \"password\": \"password\",\r\n  \"confirmPassword\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Male\",\r\n  \"experienceLevel\": \"beginner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "SIgn up - Successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful verification\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Test Vick\",\r\n  \"email\": \"fieryeyes40@gmail.com\",\r\n  \"phone\": \"+2347067491498\",\r\n  \"track\": \"QA Engineer\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"219245\",\r\n  \"password\": \"Password123\",\r\n  \"passwordConfirm\": \"Password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Female\",\r\n  \"experienceLevel\": \"expert\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signUp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "StartFragment\n\nThis route validates the otp sent to the email earlier and creates an account for the user if successful.\n\nEndFragment"
+					},
+					"response": [
+						{
+							"name": "SIgn up - Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Test Vick\",\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"phone\": \"+2348130963670\",\r\n  \"track\": \"QA Engineer\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"password123\",\r\n  \"passwordConfirm\": \"password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Female\",\r\n  \"experienceLevel\": \"expert\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/signUp",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"signUp"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "541"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"21d-9DmQFv9Zs1To/RDfjP38VFpzMM0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Sep 2022 08:11:09 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"You are signed up,A calendly link has been sent to your email .\",\n    \"data\": {\n        \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"yearOfExp\": 0,\n        \"rating\": 0,\n        \"role\": \"USER\",\n        \"status\": \"pending\",\n        \"name\": \"Test Vick\",\n        \"email\": \"vicaava@gmail.com\",\n        \"phone\": \"+2348130963670\",\n        \"track\": \"QA Engineer\",\n        \"education\": \"SSCE\",\n        \"residence\": \"Lagos\",\n        \"gender\": \"Female\",\n        \"experienceLevel\": \"expert\",\n        \"updatedAt\": \"2022-09-14T08:11:09.545Z\",\n        \"createdAt\": \"2022-09-14T08:11:09.545Z\",\n        \"portfolio\": null,\n        \"cv\": null,\n        \"picture\": null,\n        \"bio\": null,\n        \"passwordChangedAt\": null\n    }\n}"
+						},
+						{
+							"name": "SIgn up - Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Test Vick\",\r\n  \"email\": \"fieryeyes40@gmail.com\",\r\n  \"phone\": \"+2347067491498\",\r\n  \"track\": \"QA Engineer\",\r\n  \"education\": \"SSCE\",\r\n  \"otp\": \"219245\",\r\n  \"password\": \"Password123\",\r\n  \"passwordConfirm\": \"Password123\",\r\n  \"residence\": \"Lagos\",\r\n  \"gender\": \"Female\",\r\n  \"experienceLevel\": \"expert\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/signUp",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"signUp"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "545"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"221-dJfgAwTCGscGKKoRK8roJOnyzpM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Sep 2022 11:54:29 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"You are signed up,A calendly link has been sent to your email .\",\n    \"data\": {\n        \"id\": \"52a0c3a9-97cf-4da3-b086-b718ef9280fd\",\n        \"yearOfExp\": 0,\n        \"rating\": 0,\n        \"role\": \"USER\",\n        \"status\": \"pending\",\n        \"name\": \"Test Vick\",\n        \"email\": \"fieryeyes40@gmail.com\",\n        \"phone\": \"+2347067491498\",\n        \"track\": \"QA Engineer\",\n        \"education\": \"SSCE\",\n        \"residence\": \"Lagos\",\n        \"gender\": \"Female\",\n        \"experienceLevel\": \"expert\",\n        \"updatedAt\": \"2022-09-16T11:54:29.144Z\",\n        \"createdAt\": \"2022-09-16T11:54:29.144Z\",\n        \"portfolio\": null,\n        \"cv\": null,\n        \"picture\": null,\n        \"bio\": null,\n        \"passwordChangedAt\": null\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "This contains test scripts for sign up API with invalid, valid and blank detailss"
+		},
+		{
+			"name": "Sign In - TEST SCRIPTS",
+			"item": [
+				{
+					"name": "Sign In - blank fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank fields\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In - invalid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@examples\",\r\n  \"password\": \"passwor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In - new email address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava654@gmail.com\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In - blank password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In - blank email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Error message for blank fields\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Forgot Password",
+			"item": [
+				{
+					"name": "Forgot Password - invalid email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@examples\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user the access to submit his/her email address already registered on the platform to start the process of getting a new password.\n\nEndFragme"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password - unregistered email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@examples.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user the access to submit his/her email address already registered on the platform to start the process of getting a new password.\n\nEndFragme"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password - blank field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user the access to submit his/her email address already registered on the platform to start the process of getting a new password.\n\nEndFragme"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password - valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user the access to submit his/her email address already registered on the platform to start the process of getting a new password.\n\nEndFragme"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reset Password",
+			"item": [
+				{
+					"name": "Reset Password - invalid otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"346\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - expired otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - blank otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@examples.com\",\r\n  \"otp\": \"\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - unmatching password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"password\",\r\n  \"confirmPassword\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - invalid password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"password\",\r\n  \"confirmPassword\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - blank password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"\",\r\n  \"confirmPassword\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - without required combinations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"passwordsss\",\r\n  \"confirmPassword\": \"passwordss\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - old password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password - valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"848448\",\r\n  \"password\": \"Password123\",\r\n  \"confirmPassword\": \"Password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get my tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get my tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/tasks",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "411"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"19b-RuBdLvJpz2bmuOq6PcDN5QryJtI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Sep 2022 09:24:55 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task fetched successfully.\",\n    \"data\": [\n        {\n            \"id\": \"7b8deb7f-76d9-47ce-9d53-a86f98f4aa1d\",\n            \"title\": \"design users page\",\n            \"details\": \"create the the landing page for the application using the figma design\",\n            \"report\": null,\n            \"attachment\": null,\n            \"progress\": \"UNASSIGNED\",\n            \"deadline\": null,\n            \"ProjectId\": \"ccc04fb3-a188-4b34-a9cb-1e779b08e471\",\n            \"assignee\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n            \"duration\": 2\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/7b8deb7f-76d9-47ce-9d53-a86f98f4aa1d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"7b8deb7f-76d9-47ce-9d53-a86f98f4aa1d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Task for review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/{{TaskId}}/underReview",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"{{TaskId}}",
+								"underReview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/{{TaskId}}/beginTask",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"{{TaskId}}",
+								"beginTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/dashboard",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get my projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/myProjects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"myProjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/aac0307a-a4ee-4c6f-a911-1cb0cc0b2163",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"aac0307a-a4ee-4c6f-a911-1cb0cc0b2163"
+							]
+						},
+						"description": "Id of the projectthat is to be fetched\n\nprojectId"
+					},
+					"response": []
+				},
+				{
+					"name": "Get my tasks for a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tasks are present\", function () {\r",
+									"    pm.expect(jsonData.data[0]).to.not.be.empty;\r",
+									"    pm.expect(jsonData.data[0].title).to.equal(\"design users page\");\r",
+									"});\r",
+									"//count\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/ccc04fb3-a188-4b34-a9cb-1e779b08e471/myTasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"ccc04fb3-a188-4b34-a9cb-1e779b08e471",
+								"myTasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add comments to a Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"I submitted my tasks for review\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/tasks/{id}/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"{id}",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/todo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{bearerToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Sign In - successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('bearerToken', body.data);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"password\": \"Password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
+					},
+					"response": [
+						{
+							"name": "Sign In - successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/signin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "224"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"e0-6Wdw9RHgvHh6X5v28N9Um9kUQnQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Sep 2022 08:11:51 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Login successful\",\n    \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpY2FhdmFAZ21haWwuY29tIiwiaWF0IjoxNjYzMTQzMTExLCJleHAiOjE2NjMyMjk1MTF9.sm04bn4ohZT277EaD7HzbgfgI9Tds3W7GhlPOYIgd3Y\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update work experience",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company\": \"Microsoft\",\r\n  \"role\": \"backend developer intern\",\r\n  \"monthFrom\": \"January\",\r\n  \"yearFrom\": \"2022\",\r\n  \"monthTo\": \"January\",\r\n  \"yearTo\": \"2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/workExperience/{{workId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"workExperience",
+								"{{workId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create work experience",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('workId', body.data.id);\r",
+									"\r",
+									"pm.test(\"Successful request\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company\": \"Microsoft\",\r\n  \"role\": \"Software Engineer\",\r\n  \"monthFrom\": \"March\",\r\n  \"yearFrom\": \"2021\",\r\n  \"monthTo\": \"August\",\r\n  \"yearTo\": \"2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/workExperience",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"workExperience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove work experience",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/myprofile/workExperience/{{workId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"workExperience",
+								"{{workId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all work experiences Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/myprofile/workExperience",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"workExperience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add skills",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('skillId', body.data.id);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"skill\": \"Python\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all skills",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/myprofile/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update skill",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"skill\": \"Java\",\r\n  \"id\": \"{{skillId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/skills/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"skills",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add certifications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Azure Devops\",\r\n  \"issuedBy\": \"Microsoft Inc\",\r\n  \"monthIssued\": \"September\",\r\n  \"linkToCert\": \"microsoft.com\",\r\n  \"yearIssued\": \"2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/certifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"certifications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add certifications",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Azure Devops\",\r\n  \"issuedBy\": \"Microsoft Inc\",\r\n  \"monthIssued\": \"September\",\r\n  \"linkToCert\": \"microsoft.com\",\r\n  \"yearIssued\": \"2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/myprofile/certifications",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"myprofile",
+										"certifications"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "369"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"171-6S0dGi+he7ZOCIjRUO0TEh/heNg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Sep 2022 08:59:17 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Certification added successfully\",\n    \"data\": {\n        \"id\": \"d3fc9545-3159-4305-999e-e98816c63f1e\",\n        \"UserId\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"title\": \"Azure Devops\",\n        \"issuedBy\": \"Microsoft Inc\",\n        \"monthIssued\": \"September\",\n        \"linkToCert\": \"microsoft.com\",\n        \"yearIssued\": \"2022\",\n        \"updatedAt\": \"2022-09-19T08:59:17.651Z\",\n        \"createdAt\": \"2022-09-19T08:59:17.651Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all certifications",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/myprofile/certifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"certifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "/C:/Users/victoria/Pictures/potrait/Home Potrait, Osogbo/2020 - Copy (2).jpg"
+								},
+								{
+									"key": "name",
+									"value": "Vicky Test",
+									"type": "text"
+								},
+								{
+									"key": "portfolio",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "track",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "yearOfExp",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/myprofile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/myprofile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"myprofile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "673"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"2a1-1GtHvh4VxWqZKDFk1gB+oH6m5ro\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Sep 2022 08:54:16 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Profile fetched successfully\",\n    \"data\": {\n        \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"name\": \"Test Vick\",\n        \"email\": \"vicaava@gmail.com\",\n        \"phone\": \"+2348130963670\",\n        \"track\": \"QA Engineer\",\n        \"gender\": \"Female\",\n        \"education\": \"SSCE\",\n        \"experienceLevel\": \"expert\",\n        \"portfolio\": null,\n        \"yearOfExp\": 0,\n        \"rating\": 0,\n        \"cv\": null,\n        \"role\": \"USER\",\n        \"picture\": null,\n        \"bio\": null,\n        \"status\": \"Active\",\n        \"residence\": \"Lagos\",\n        \"Skills\": [\n            {\n                \"id\": \"aeb2ae8d-fc4e-4b38-9b09-5846d18fc640\",\n                \"skill\": \"Cypress\",\n                \"UserId\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\"\n            },\n            {\n                \"id\": \"ae073bc0-99fa-422d-b970-a58c486c3954\",\n                \"skill\": \"QA\",\n                \"UserId\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\"\n            }\n        ],\n        \"Certifications\": [],\n        \"WorkExperiences\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update profile bio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bio\": \"I am a skilled and versatile developer. I've  used a lot of tools to develop world class projects.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/bio",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"bio"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update profile bio",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bio\": \"I am a skilled and versatile developer. I've  used a lot of tools to develop world class projects.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/myprofile/bio",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"myprofile",
+										"bio"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "577"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"241-KFrQGdc8WSSBhhdsjZLIK77dwC0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Sep 2022 09:08:56 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Profile updated successfully\",\n    \"data\": {\n        \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"name\": \"Vicky Test\",\n        \"email\": \"vicaava@gmail.com\",\n        \"phone\": \"+2348130963670\",\n        \"track\": \"QA Engineer\",\n        \"gender\": \"Female\",\n        \"education\": \"SSCE\",\n        \"experienceLevel\": \"expert\",\n        \"portfolio\": null,\n        \"yearOfExp\": 3,\n        \"rating\": 0,\n        \"cv\": null,\n        \"role\": \"USER\",\n        \"picture\": null,\n        \"bio\": \"I am a skilled and versatile developer. I've  used a lot of tools to develop world class projects.\",\n        \"status\": \"Active\",\n        \"residence\": \"Lagos\",\n        \"createdAt\": \"2022-09-14T08:11:09.545Z\",\n        \"updatedAt\": \"2022-09-27T09:08:56.719Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload CV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cGVyQWRtaW4xQHRlY2gtY3JtLmNvbSIsImlhdCI6MTY2NDI3MTY5MCwiZXhwIjoxNjY0MzU4MDkwfQ.jIWN--Wz94yZHTlZ9smowuFDloJtMZdqdrHiRTDo3B8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CV",
+									"type": "file",
+									"src": "/C:/Users/victoria/Desktop/Resume/AYODEJI Victoria - E.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/cv",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"cv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "uyecnidmlmopk84wbed20382739202",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/myprofile/updateFcmToken",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"myprofile",
+								"updateFcmToken"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{bearerToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "View Notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{superadminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/notifications/myNotifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"notifications",
+								"myNotifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Notifications",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/notifications/clearAll",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"notifications",
+								"clearAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mark Notifications as Read",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/notifications/markAsRead",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"notifications",
+								"markAsRead"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{bearerToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin APIs",
+			"item": [
+				{
+					"name": "Super Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('superadminToken', body.data);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"superAdmin1@tech-crm.com\",\r\n  \"password\": \"adminuser123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('adminToken', body.data);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"superAdmin@tech-crm.com\",\r\n  \"password\": \"adminuser123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get projects for a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/newProjectTask/52a0c3a9-97cf-4da3-b086-b718ef9280fd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"newProjectTask",
+								"52a0c3a9-97cf-4da3-b086-b718ef9280fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cGVyQWRtaW5AdGVjaC1jcm0uY29tIiwiaWF0IjoxNjYzNzYwMTM3LCJleHAiOjE2NjM4NDY1Mzd9.3k0ss7WQDNj0PlNK4KJ4IwxpRT534io0J3Vm1iCd0hE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Task",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/tasks/05fa7660-bd24-447d-8441-bb395ae39f30/assignTask",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"05fa7660-bd24-447d-8441-bb395ae39f30",
+								"assignTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/7b8deb7f-76d9-47ce-9d53-a86f98f4aa1d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"7b8deb7f-76d9-47ce-9d53-a86f98f4aa1d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a talent profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/52a0c3a9-97cf-4da3-b086-b718ef9280fd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"52a0c3a9-97cf-4da3-b086-b718ef9280fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all talents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/talents/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"talents",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"The project will have two supper admin and the will also be used to manage asset of the community.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/projects/{{projectid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"{{projectid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Api designs\",\r\n  \"details\": \"crete the the landing page for the application using the figma design\",\r\n  \"duration\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/tasks/{{TaskId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"{{TaskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task as done",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/{{TaskId}}/done",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"{{TaskId}}",
+								"done"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('TaskId', body.message.id);\r",
+									"\r",
+									"pm.test(\"Successful request\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"design users page\",\r\n  \"details\": \"create the the landing page for the application using the figma design\",\r\n  \"duration\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/projects/ccc04fb3-a188-4b34-a9cb-1e779b08e471/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"ccc04fb3-a188-4b34-a9cb-1e779b08e471",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks for a project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/projects/3c4a7527-c539-487f-ae49-268a605e40c4/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects",
+								"3c4a7527-c539-487f-ae49-268a605e40c4",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todo Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tasks/todo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tasks",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all CRM Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{superadminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all CRM Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5987"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"1763-OLasXqq/CiAw9nGAF7hdMAZ+CsM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Sep 2022 09:43:03 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Users fetched successfully\",\n    \"data\": {\n        \"count\": 13,\n        \"rows\": [\n            {\n                \"id\": \"2df8d862-2c39-4d53-b7d1-02e34b68d7fd\",\n                \"name\": \"Segun\",\n                \"email\": \"topfem.o@gmail.com\",\n                \"phone\": \"08100866939\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-13T10:12:13.154Z\",\n                \"updatedAt\": \"2022-09-13T10:12:13.154Z\"\n            },\n            {\n                \"id\": \"fcc778c2-0a28-451c-b428-a5e797b8cffc\",\n                \"name\": \"Mayowa Rotimi\",\n                \"email\": \"n53kbdraom@pickuplanet.com\",\n                \"phone\": \"081003866939\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-13T10:37:31.216Z\",\n                \"updatedAt\": \"2022-09-13T10:37:31.216Z\"\n            },\n            {\n                \"id\": \"15187174-efc8-4d89-a792-4fbdb0898902\",\n                \"name\": \"ssddsds sddsds\",\n                \"email\": \"alanzman02@hacktoy.com\",\n                \"phone\": \"0328322203511\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Kaduna\",\n                \"createdAt\": \"2022-09-13T18:08:28.832Z\",\n                \"updatedAt\": \"2022-09-13T18:08:28.832Z\"\n            },\n            {\n                \"id\": \"7b2e9a08-ca4f-4ea9-a35c-92371ccc8a61\",\n                \"name\": \"talent2\",\n                \"email\": \"talent2@tech-crm.com\",\n                \"phone\": \"09045740104\",\n                \"track\": \"Frontend development\",\n                \"gender\": \"Female\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-16T08:39:44.975Z\",\n                \"updatedAt\": \"2022-09-16T08:39:44.975Z\"\n            },\n            {\n                \"id\": \"b5d057ae-ff21-4643-8e00-40883b34faaf\",\n                \"name\": \"talent5\",\n                \"email\": \"talent5@tech-crm.com\",\n                \"phone\": \"09045747103\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Kano\",\n                \"createdAt\": \"2022-09-16T08:39:46.649Z\",\n                \"updatedAt\": \"2022-09-16T08:39:46.649Z\"\n            },\n            {\n                \"id\": \"a9b7a594-0492-4680-b29f-a0fe62c90002\",\n                \"name\": \"Admin2\",\n                \"email\": \"superAdmin1@tech-crm.com\",\n                \"phone\": \"08124013265\",\n                \"track\": \"Frontend development\",\n                \"gender\": \"Female\",\n                \"education\": \"MSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"SUPERADMIN\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-16T08:39:48.847Z\",\n                \"updatedAt\": \"2022-09-16T08:39:48.847Z\"\n            },\n            {\n                \"id\": \"52a0c3a9-97cf-4da3-b086-b718ef9280fd\",\n                \"name\": \"Test Vick\",\n                \"email\": \"fieryeyes40@gmail.com\",\n                \"phone\": \"+2347067491498\",\n                \"track\": \"QA Engineer\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"expert\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-16T11:54:29.144Z\",\n                \"updatedAt\": \"2022-09-16T12:04:43.346Z\"\n            },\n            {\n                \"id\": \"246c5b0e-cd4d-4ade-b08f-3a99a289f274\",\n                \"name\": \"Mukhtar Adaji\",\n                \"email\": \"alfadaji@gmail.com\",\n                \"phone\": \"07069261508\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Kaduna\",\n                \"createdAt\": \"2022-09-22T08:30:08.585Z\",\n                \"updatedAt\": \"2022-09-22T08:30:08.585Z\"\n            },\n            {\n                \"id\": \"d677684a-e788-408c-a232-b56ef0400cde\",\n                \"name\": \"vicky adaams\",\n                \"email\": \"vicaava+29@gmail.com\",\n                \"phone\": \"1236547890\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-25T19:29:08.016Z\",\n                \"updatedAt\": \"2022-09-25T19:29:08.016Z\"\n            },\n            {\n                \"id\": \"8f0f5aea-59e2-4309-9352-f0f5b720b377\",\n                \"name\": \"talent3\",\n                \"email\": \"talent3@tech-crm.com\",\n                \"phone\": \"09045740123\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": \"My name is Mukhtar\\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas iste placeat debi\",\n                \"status\": \"Active\",\n                \"residence\": \"Oyo\",\n                \"createdAt\": \"2022-09-16T08:39:45.805Z\",\n                \"updatedAt\": \"2022-09-25T19:31:27.600Z\"\n            },\n            {\n                \"id\": \"16a2745e-69b6-489f-86e8-2c718a3d35df\",\n                \"name\": \"Admin1\",\n                \"email\": \"superAdmin@tech-crm.com\",\n                \"phone\": \"08124013264\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"ADMIN\",\n                \"picture\": null,\n                \"bio\": \"dsddsdsdssd\",\n                \"status\": \"Active\",\n                \"residence\": \"Oyo\",\n                \"createdAt\": \"2022-09-16T08:39:48.009Z\",\n                \"updatedAt\": \"2022-09-24T10:11:22.908Z\"\n            },\n            {\n                \"id\": \"c1efae28-b74e-45ac-8872-59be58d88b47\",\n                \"name\": \"talent1\",\n                \"email\": \"talent1@tech-crm.com\",\n                \"phone\": \"09045740103\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": \"https://res.cloudinary.com/tobiloba98/image/upload/v1664271398/Tech-crm/c1efae28-b74e-45ac-8872-59be58d88b47-Tue%20Sep%2027%202022%2009:36:38%20GMT%2B0000%20%28Coordinated%20Universal%20Time%29-cv.pdf\",\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Oyo\",\n                \"createdAt\": \"2022-09-16T08:39:44.104Z\",\n                \"updatedAt\": \"2022-09-27T09:36:38.631Z\"\n            },\n            {\n                \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n                \"name\": \"Vicky Test\",\n                \"email\": \"vicaava@gmail.com\",\n                \"phone\": \"+2348130963670\",\n                \"track\": \"QA Engineer\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"expert\",\n                \"portfolio\": null,\n                \"yearOfExp\": 3,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"ADMIN\",\n                \"picture\": null,\n                \"bio\": \"I am a skilled and versatile developer. I've  used a lot of tools to develop world class projects.\",\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-14T08:11:09.545Z\",\n                \"updatedAt\": \"2022-09-27T09:42:03.804Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Promote a Talent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{superadminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/7f6e7441-21e0-482c-8bad-c29f300743b7/promote",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"7f6e7441-21e0-482c-8bad-c29f300743b7",
+								"promote"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Promote a Talent",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/7f6e7441-21e0-482c-8bad-c29f300743b7/promote",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"7f6e7441-21e0-482c-8bad-c29f300743b7",
+										"promote"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "576"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"240-5gANa4p0skDC8k5N+EBWuiDHmc8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Sep 2022 09:42:03 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User promoted successfully\",\n    \"data\": {\n        \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"name\": \"Vicky Test\",\n        \"email\": \"vicaava@gmail.com\",\n        \"phone\": \"+2348130963670\",\n        \"track\": \"QA Engineer\",\n        \"gender\": \"Female\",\n        \"education\": \"SSCE\",\n        \"experienceLevel\": \"expert\",\n        \"portfolio\": null,\n        \"yearOfExp\": 3,\n        \"rating\": 0,\n        \"cv\": null,\n        \"role\": \"ADMIN\",\n        \"picture\": null,\n        \"bio\": \"I am a skilled and versatile developer. I've  used a lot of tools to develop world class projects.\",\n        \"status\": \"Active\",\n        \"residence\": \"Lagos\",\n        \"createdAt\": \"2022-09-14T08:11:09.545Z\",\n        \"updatedAt\": \"2022-09-27T09:42:03.804Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Approve User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/52a0c3a9-97cf-4da3-b086-b718ef9280fd/approve/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"52a0c3a9-97cf-4da3-b086-b718ef9280fd",
+								"approve",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Approve User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/7f6e7441-21e0-482c-8bad-c29f300743b7/approve/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"7f6e7441-21e0-482c-8bad-c29f300743b7",
+										"approve",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "478"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"1de-XHS6zKhUFR1zX3JthwB2qleA5Rk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Sep 2022 12:03:43 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User Approved successfully\",\n    \"data\": {\n        \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"name\": \"Test Vick\",\n        \"email\": \"vicaava@gmail.com\",\n        \"phone\": \"+2348130963670\",\n        \"track\": \"QA Engineer\",\n        \"gender\": \"Female\",\n        \"education\": \"SSCE\",\n        \"experienceLevel\": \"expert\",\n        \"portfolio\": null,\n        \"yearOfExp\": 0,\n        \"rating\": 0,\n        \"cv\": null,\n        \"role\": \"USER\",\n        \"picture\": null,\n        \"bio\": null,\n        \"status\": \"Active\",\n        \"residence\": \"Lagos\",\n        \"createdAt\": \"2022-09-14T08:11:09.545Z\",\n        \"updatedAt\": \"2022-09-16T12:03:43.471Z\"\n    }\n}"
+						},
+						{
+							"name": "Approve User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/users/52a0c3a9-97cf-4da3-b086-b718ef9280fd/approve/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"52a0c3a9-97cf-4da3-b086-b718ef9280fd",
+										"approve",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "482"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"1e2-9Jl/RbDZxbEI2baiOEaYN9FEHoo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Sep 2022 12:04:43 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User Approved successfully\",\n    \"data\": {\n        \"id\": \"52a0c3a9-97cf-4da3-b086-b718ef9280fd\",\n        \"name\": \"Test Vick\",\n        \"email\": \"fieryeyes40@gmail.com\",\n        \"phone\": \"+2347067491498\",\n        \"track\": \"QA Engineer\",\n        \"gender\": \"Female\",\n        \"education\": \"SSCE\",\n        \"experienceLevel\": \"expert\",\n        \"portfolio\": null,\n        \"yearOfExp\": 0,\n        \"rating\": 0,\n        \"cv\": null,\n        \"role\": \"USER\",\n        \"picture\": null,\n        \"bio\": null,\n        \"status\": \"Active\",\n        \"residence\": \"Lagos\",\n        \"createdAt\": \"2022-09-16T11:54:29.144Z\",\n        \"updatedAt\": \"2022-09-16T12:04:43.346Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Demote User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/52a0c3a9-97cf-4da3-b086-b718ef9280fd/demote",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"52a0c3a9-97cf-4da3-b086-b718ef9280fd",
+								"demote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/52a0c3a9-97cf-4da3-b086-b718ef9280fd/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"52a0c3a9-97cf-4da3-b086-b718ef9280fd",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = pm.response.json();\r",
+									"pm.environment.set('projectId', body.message.data.id);\r",
+									"\r",
+									"pm.test(\"Successful request\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Design Rent Application\",\r\n  \"description\": \"Application for managing houses\",\r\n  \"duration\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/projects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Project",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Tech Crm project 2.0\",\r\n  \"description\": \"Application for managing talents and projects in the community\",\r\n  \"duration\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/projects",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "356"
+								},
+								{
+									"key": "Etag",
+									"value": "W/\"164-3wbZRUHPErgJC3qKdtpkXqexWBE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 19 Sep 2022 13:26:41 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": {\n        \"id\": \"d162cfad-4080-4657-a811-9bec674b569e\",\n        \"progress\": \"NOT STARTED\",\n        \"title\": \"Tech Crm project 2.0\",\n        \"description\": \"Application for managing talents and projects in the community\",\n        \"deadline\": null,\n        \"duration\": 1,\n        \"updatedAt\": \"2022-09-19T13:26:41.676Z\",\n        \"createdAt\": \"2022-09-19T13:26:41.676Z\"\n    },\n    \"data\": \"project created successfully\"\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{adminToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "segsalerty-crm-be.herokuapp.com/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "Token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
