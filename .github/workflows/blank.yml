@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Talent Trakka build
+name: run Talent Trakka api core test on staging
 
 # Controls when the workflow will run
 on:
@@ -8,17 +8,45 @@ on:
   push:
     branches: 
       - main
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    
 jobs:
   # This workflow contains a single job called "build"
   test-api:
-    # The type of runner that the job will run on
+     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      
+    # INstall Node on the runner
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with: 
+        node-version: '16.x'
+    
+    # Install the newman command line utility and also install the html extra reporter
+    - name: Install newman
+      run: |
+       npm install -g newman
+       npm install -g newman-reporter-htmlextra
+       
+    # Make directory to upload the test results
+    - name: Make Directory for results
+      run: |
+        mkdir -p TrakkatestResults
+        
+     # Run the POSTMAN collection
+    - name: run Trakka collection and Generate Report
+      run: |
+       newman run Talents Trakka.json -r htmlhtmlextra --reporter-htmlextra-export TrakkatestResults/htmlreport.html --reporter-htmlextra-darkTheme  > TrakkatestResults/runreport1.html
 
-    # Install Node on the Runner
-     -  name: 
-            uses: 
+
+      # Upload the contents of Test Results directory to workspace
+       
+    # Upload the contents of Test Results directory to workspace
+    - name: Output the run Details
+      uses: actions/upload-artifact@v3
+      with: 
+       name: TestReports
+       path: testResults
