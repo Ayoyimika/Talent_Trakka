@@ -36,17 +36,4 @@ jobs:
       run: |
         mkdir -p TrakkatestResults
         
-     # Run the POSTMAN collection
-    - name: run Trakka collection and Generate Report
-      run: |
-       newman run Talents_Trakka.json -r htmlhtmlextra --reporter-htmlextra-export TrakkatestResults/htmlreport.html --reporter-htmlextra-darkTheme  > TrakkatestResults/runreport1.html
-
-
-      # Upload the contents of Test Results directory to workspace
-       
-    # Upload the contents of Test Results directory to workspace
-    - name: Output the run Details
-      uses: actions/upload-artifact@v3
-      with: 
-       name: TestReports
-       path: testResults
+     
