@@ -39,7 +39,7 @@ jobs:
           # Run the POSTMAN collection
     - name: run Trakka collection and Generate Report
       run: |
-       newman run Talents_Trakka.json –reporters=cli,htmlextra
+       newman run Talents_Trakka.json
        
     # Upload the contents of Test Results directory to workspace
     - name: Output the run Details
