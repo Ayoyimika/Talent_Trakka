@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "a1a710b7-4f05-480d-82d9-1d1a8d2dbcb6",
-		"name": "Automate",
+		"_postman_id": "2fa69ffc-18a4-4131-ae9c-63ac97669f5c",
+		"name": "TalenTrakka",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23241103"
 	},
@@ -1686,12 +1686,104 @@
 						"description": "StartFragment\n\nThis route gives the user the access to submit his/her email address already registered on the platform to start the process of getting a new password.\n\nEndFragme"
 					},
 					"response": []
+				},
+				{
+					"name": "Forgot Password - valid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route gives the user the access to submit his/her email address already registered on the platform to start the process of getting a new password.\n\nEndFragme"
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Reset Password",
 			"item": [
+				{
+					"name": "Reset Password - invalid otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Error message\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"otp\": \"346\",\r\n  \"password\": \"password123\",\r\n  \"confirmPassword\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						},
+						"description": "StartFragment\n\nThis route enables a user to change password after sending a forget password request.\n\nEndFragment"
+					},
+					"response": []
+				},
 				{
 					"name": "Reset Password - expired otp",
 					"event": [
@@ -1980,1198 +2072,38 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		},
 		{
-			"name": "Tasks",
-			"item": [
-				{
-					"name": "Sign In - successful",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var body = pm.response.json();\r",
-									"pm.environment.set('bearerToken', body.data);\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"password\": \"Password123\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/auth/signin",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"auth",
-								"signin"
-							]
-						},
-						"description": "StartFragment\n\nThis route gives the user access to the platform via an access token which is sent back to the user once the user logged in successfully.\n\nEndFragment"
-					},
-					"response": [
-						{
-							"name": "Sign In - successful",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"vicaava@gmail.com\",\r\n  \"password\": \"password123\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/auth/signin",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"auth",
-										"signin"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "224"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"e0-6Wdw9RHgvHh6X5v28N9Um9kUQnQ\""
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 14 Sep 2022 08:11:51 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Login successful\",\n    \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpY2FhdmFAZ21haWwuY29tIiwiaWF0IjoxNjYzMTQzMTExLCJleHAiOjE2NjMyMjk1MTF9.sm04bn4ohZT277EaD7HzbgfgI9Tds3W7GhlPOYIgd3Y\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Get my tasks",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/tasks",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get my tasks",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/tasks",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"tasks"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "411"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"19b-RuBdLvJpz2bmuOq6PcDN5QryJtI\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 27 Sep 2022 09:24:55 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task fetched successfully.\",\n    \"data\": [\n        {\n            \"id\": \"7b8deb7f-76d9-47ce-9d53-a86f98f4aa1d\",\n            \"title\": \"design users page\",\n            \"details\": \"create the the landing page for the application using the figma design\",\n            \"report\": null,\n            \"attachment\": null,\n            \"progress\": \"UNASSIGNED\",\n            \"deadline\": null,\n            \"ProjectId\": \"ccc04fb3-a188-4b34-a9cb-1e779b08e471\",\n            \"assignee\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n            \"duration\": 2\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Get a Task",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/tasks/05fa7660-bd24-447d-8441-bb395ae39f30",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks",
-								"05fa7660-bd24-447d-8441-bb395ae39f30"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get a Task",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/tasks/05fa7660-bd24-447d-8441-bb395ae39f30",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"tasks",
-										"05fa7660-bd24-447d-8441-bb395ae39f30"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "1144"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"478-j9ji89H88+ZLIqUBQUKHxcQBOIA\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 27 Oct 2022 14:38:14 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Task fetched successfully.\",\n    \"data\": {\n        \"id\": \"05fa7660-bd24-447d-8441-bb395ae39f30\",\n        \"title\": \"tt\",\n        \"details\": \"rr\",\n        \"report\": null,\n        \"attachment\": null,\n        \"progress\": \"TO DO\",\n        \"deadline\": null,\n        \"ProjectId\": \"3c4a7527-c539-487f-ae49-268a605e40c4\",\n        \"assignee\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"duration\": 2,\n        \"dateAssigned\": \"2022-10-26T10:38:11.429Z\",\n        \"dateSubmitted\": null,\n        \"assigner\": \"16a2745e-69b6-489f-86e8-2c718a3d35df\",\n        \"isNotified\": false,\n        \"Comments\": [\n            {\n                \"id\": \"b1c528c9-a732-4425-ac3f-8890766f1a51\",\n                \"content\": \"Comment is added here. \",\n                \"createdAt\": \"2022-10-15T09:43:19.355Z\",\n                \"updatedAt\": \"2022-10-15T09:43:19.355Z\",\n                \"User\": {\n                    \"picture\": \"https://res.cloudinary.com/tobiloba98/image/upload/v1665561882/Tech-crm/a9b7a594-0492-4680-b29f-a0fe62c90002-Wed%20Oct%2012%202022%2008:04:42%20GMT%2B0000%20%28Coordinated%20Universal%20Time%29-picture.jpg\",\n                    \"name\": \"Super Admin\",\n                    \"id\": \"a9b7a594-0492-4680-b29f-a0fe62c90002\"\n                }\n            },\n            {\n                \"id\": \"1161f8c9-cf47-4cc8-a4d0-4b33ef54f438\",\n                \"content\": \"adaji\",\n                \"createdAt\": \"2022-10-12T07:31:51.178Z\",\n                \"updatedAt\": \"2022-10-12T07:31:51.178Z\",\n                \"User\": {\n                    \"picture\": null,\n                    \"name\": \"Admin1\",\n                    \"id\": \"16a2745e-69b6-489f-86e8-2c718a3d35df\"\n                }\n            }\n        ]\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Dashboard",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/tasks/dashboard",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks",
-								"dashboard"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get my projects",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/projects/myProjects",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"projects",
-								"myProjects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get a project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/projects/aac0307a-a4ee-4c6f-a911-1cb0cc0b2163",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"projects",
-								"aac0307a-a4ee-4c6f-a911-1cb0cc0b2163"
-							]
-						},
-						"description": "Id of the projectthat is to be fetched\n\nprojectId"
-					},
-					"response": []
-				},
-				{
-					"name": "Add comments to a Task",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"content\": \"I submitted my tasks for review\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/tasks/05fa7660-bd24-447d-8441-bb395ae39f30/comments",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks",
-								"05fa7660-bd24-447d-8441-bb395ae39f30",
-								"comments"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Add comments to a Task",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"content\": \"I submitted my tasks for review\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/tasks/05fa7660-bd24-447d-8441-bb395ae39f30/comments",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"tasks",
-										"05fa7660-bd24-447d-8441-bb395ae39f30",
-										"comments"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "330"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"14a-hy+Tn5dTS1DyzEO/YL1StzmzX9k\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 27 Oct 2022 14:38:28 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Comment added successfully\",\n    \"data\": {\n        \"id\": \"c01d7aa2-6534-4a1a-b8f4-1f214e0a5efa\",\n        \"UserId\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"TaskId\": \"05fa7660-bd24-447d-8441-bb395ae39f30\",\n        \"content\": \"I submitted my tasks for review\",\n        \"updatedAt\": \"2022-10-27T14:38:28.189Z\",\n        \"createdAt\": \"2022-10-27T14:38:28.189Z\"\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Get Todo",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/tasks/todo",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks",
-								"todo"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get Todo",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/tasks/todo",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"tasks",
-										"todo"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "456"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"1c8-+K5moIqxSQhBSVebjkEXiwwfH2Y\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 27 Oct 2022 14:38:36 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Tasks fetched successfully.\",\n    \"data\": [\n        {\n            \"id\": \"05fa7660-bd24-447d-8441-bb395ae39f30\",\n            \"title\": \"tt\",\n            \"details\": \"rr\",\n            \"report\": null,\n            \"attachment\": null,\n            \"progress\": \"TO DO\",\n            \"deadline\": null,\n            \"ProjectId\": \"3c4a7527-c539-487f-ae49-268a605e40c4\",\n            \"assignee\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n            \"duration\": 2,\n            \"dateAssigned\": \"2022-10-26T10:38:11.429Z\",\n            \"dateSubmitted\": null,\n            \"assigner\": \"16a2745e-69b6-489f-86e8-2c718a3d35df\",\n            \"isNotified\": false\n        }\n    ]\n}"
-						}
-					]
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{bearerToken}}",
-						"type": "string"
-					}
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
 				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "segsalerty-crm-be.herokuapp.com/api/v1",
+			"type": "string"
 		},
 		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "Update work experience",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"company\": \"Microsoft\",\r\n  \"role\": \"QA\",\r\n  \"monthFrom\": \"January\",\r\n  \"yearFrom\": \"2022\",\r\n  \"monthTo\": \"May\",\r\n  \"yearTo\": \"2022\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/users/myprofile/workExperience/4263dadd-11d3-4fe2-b39c-395f29810a21",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"myprofile",
-								"workExperience",
-								"4263dadd-11d3-4fe2-b39c-395f29810a21"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all work experiences Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/myprofile/workExperience",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"myprofile",
-								"workExperience"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all skills",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/myprofile/skills",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"myprofile",
-								"skills"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Profile",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/myprofile",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"myprofile"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get Profile",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/users/myprofile",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"users",
-										"myprofile"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "673"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"2a1-1GtHvh4VxWqZKDFk1gB+oH6m5ro\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 19 Sep 2022 08:54:16 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Profile fetched successfully\",\n    \"data\": {\n        \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n        \"name\": \"Test Vick\",\n        \"email\": \"vicaava@gmail.com\",\n        \"phone\": \"+2348130963670\",\n        \"track\": \"QA Engineer\",\n        \"gender\": \"Female\",\n        \"education\": \"SSCE\",\n        \"experienceLevel\": \"expert\",\n        \"portfolio\": null,\n        \"yearOfExp\": 0,\n        \"rating\": 0,\n        \"cv\": null,\n        \"role\": \"USER\",\n        \"picture\": null,\n        \"bio\": null,\n        \"status\": \"Active\",\n        \"residence\": \"Lagos\",\n        \"Skills\": [\n            {\n                \"id\": \"aeb2ae8d-fc4e-4b38-9b09-5846d18fc640\",\n                \"skill\": \"Cypress\",\n                \"UserId\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\"\n            },\n            {\n                \"id\": \"ae073bc0-99fa-422d-b970-a58c486c3954\",\n                \"skill\": \"QA\",\n                \"UserId\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\"\n            }\n        ],\n        \"Certifications\": [],\n        \"WorkExperiences\": []\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Get all certifications",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/myprofile/certifications",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"myprofile",
-								"certifications"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{bearerToken}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Admin APIs",
-			"item": [
-				{
-					"name": "Super Admin Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var body = pm.response.json();\r",
-									"pm.environment.set('superadminToken', body.data);\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"superAdmin1@tech-crm.com\",\r\n  \"password\": \"adminuser123\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/auth/signin",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"auth",
-								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Admin Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var body = pm.response.json();\r",
-									"pm.environment.set('adminToken', body.data);\r",
-									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"superAdmin@tech-crm.com\",\r\n  \"password\": \"adminuser123\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/auth/signin",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"auth",
-								"signin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get projects for a user",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/projects/newProjectTask/52a0c3a9-97cf-4da3-b086-b718ef9280fd",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"projects",
-								"newProjectTask",
-								"52a0c3a9-97cf-4da3-b086-b718ef9280fd"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all projects",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1cGVyQWRtaW5AdGVjaC1jcm0uY29tIiwiaWF0IjoxNjYzNzYwMTM3LCJleHAiOjE2NjM4NDY1Mzd9.3k0ss7WQDNj0PlNK4KJ4IwxpRT534io0J3Vm1iCd0hE",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/projects",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get a talent profile",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users/52a0c3a9-97cf-4da3-b086-b718ef9280fd",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users",
-								"52a0c3a9-97cf-4da3-b086-b718ef9280fd"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Tasks for a project",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/projects/3c4a7527-c539-487f-ae49-268a605e40c4/tasks",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"projects",
-								"3c4a7527-c539-487f-ae49-268a605e40c4",
-								"tasks"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Todo Task",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/tasks/todo",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tasks",
-								"todo"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all CRM Users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{superadminToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/users",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get all CRM Users",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/users",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"users"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "Cowboy"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "5987"
-								},
-								{
-									"key": "Etag",
-									"value": "W/\"1763-OLasXqq/CiAw9nGAF7hdMAZ+CsM\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 27 Sep 2022 09:43:03 GMT"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 vegur"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Users fetched successfully\",\n    \"data\": {\n        \"count\": 13,\n        \"rows\": [\n            {\n                \"id\": \"2df8d862-2c39-4d53-b7d1-02e34b68d7fd\",\n                \"name\": \"Segun\",\n                \"email\": \"topfem.o@gmail.com\",\n                \"phone\": \"08100866939\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-13T10:12:13.154Z\",\n                \"updatedAt\": \"2022-09-13T10:12:13.154Z\"\n            },\n            {\n                \"id\": \"fcc778c2-0a28-451c-b428-a5e797b8cffc\",\n                \"name\": \"Mayowa Rotimi\",\n                \"email\": \"n53kbdraom@pickuplanet.com\",\n                \"phone\": \"081003866939\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-13T10:37:31.216Z\",\n                \"updatedAt\": \"2022-09-13T10:37:31.216Z\"\n            },\n            {\n                \"id\": \"15187174-efc8-4d89-a792-4fbdb0898902\",\n                \"name\": \"ssddsds sddsds\",\n                \"email\": \"alanzman02@hacktoy.com\",\n                \"phone\": \"0328322203511\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Kaduna\",\n                \"createdAt\": \"2022-09-13T18:08:28.832Z\",\n                \"updatedAt\": \"2022-09-13T18:08:28.832Z\"\n            },\n            {\n                \"id\": \"7b2e9a08-ca4f-4ea9-a35c-92371ccc8a61\",\n                \"name\": \"talent2\",\n                \"email\": \"talent2@tech-crm.com\",\n                \"phone\": \"09045740104\",\n                \"track\": \"Frontend development\",\n                \"gender\": \"Female\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-16T08:39:44.975Z\",\n                \"updatedAt\": \"2022-09-16T08:39:44.975Z\"\n            },\n            {\n                \"id\": \"b5d057ae-ff21-4643-8e00-40883b34faaf\",\n                \"name\": \"talent5\",\n                \"email\": \"talent5@tech-crm.com\",\n                \"phone\": \"09045747103\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Kano\",\n                \"createdAt\": \"2022-09-16T08:39:46.649Z\",\n                \"updatedAt\": \"2022-09-16T08:39:46.649Z\"\n            },\n            {\n                \"id\": \"a9b7a594-0492-4680-b29f-a0fe62c90002\",\n                \"name\": \"Admin2\",\n                \"email\": \"superAdmin1@tech-crm.com\",\n                \"phone\": \"08124013265\",\n                \"track\": \"Frontend development\",\n                \"gender\": \"Female\",\n                \"education\": \"MSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"SUPERADMIN\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-16T08:39:48.847Z\",\n                \"updatedAt\": \"2022-09-16T08:39:48.847Z\"\n            },\n            {\n                \"id\": \"52a0c3a9-97cf-4da3-b086-b718ef9280fd\",\n                \"name\": \"Test Vick\",\n                \"email\": \"fieryeyes40@gmail.com\",\n                \"phone\": \"+2347067491498\",\n                \"track\": \"QA Engineer\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"expert\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-16T11:54:29.144Z\",\n                \"updatedAt\": \"2022-09-16T12:04:43.346Z\"\n            },\n            {\n                \"id\": \"246c5b0e-cd4d-4ade-b08f-3a99a289f274\",\n                \"name\": \"Mukhtar Adaji\",\n                \"email\": \"alfadaji@gmail.com\",\n                \"phone\": \"07069261508\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Kaduna\",\n                \"createdAt\": \"2022-09-22T08:30:08.585Z\",\n                \"updatedAt\": \"2022-09-22T08:30:08.585Z\"\n            },\n            {\n                \"id\": \"d677684a-e788-408c-a232-b56ef0400cde\",\n                \"name\": \"vicky adaams\",\n                \"email\": \"vicaava+29@gmail.com\",\n                \"phone\": \"1236547890\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"pending\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-25T19:29:08.016Z\",\n                \"updatedAt\": \"2022-09-25T19:29:08.016Z\"\n            },\n            {\n                \"id\": \"8f0f5aea-59e2-4309-9352-f0f5b720b377\",\n                \"name\": \"talent3\",\n                \"email\": \"talent3@tech-crm.com\",\n                \"phone\": \"09045740123\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": \"My name is Mukhtar\\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas iste placeat debi\",\n                \"status\": \"Active\",\n                \"residence\": \"Oyo\",\n                \"createdAt\": \"2022-09-16T08:39:45.805Z\",\n                \"updatedAt\": \"2022-09-25T19:31:27.600Z\"\n            },\n            {\n                \"id\": \"16a2745e-69b6-489f-86e8-2c718a3d35df\",\n                \"name\": \"Admin1\",\n                \"email\": \"superAdmin@tech-crm.com\",\n                \"phone\": \"08124013264\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"intermediate\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"ADMIN\",\n                \"picture\": null,\n                \"bio\": \"dsddsdsdssd\",\n                \"status\": \"Active\",\n                \"residence\": \"Oyo\",\n                \"createdAt\": \"2022-09-16T08:39:48.009Z\",\n                \"updatedAt\": \"2022-09-24T10:11:22.908Z\"\n            },\n            {\n                \"id\": \"c1efae28-b74e-45ac-8872-59be58d88b47\",\n                \"name\": \"talent1\",\n                \"email\": \"talent1@tech-crm.com\",\n                \"phone\": \"09045740103\",\n                \"track\": \"Backend development\",\n                \"gender\": \"Male\",\n                \"education\": \"BSc\",\n                \"experienceLevel\": \"beginner\",\n                \"portfolio\": null,\n                \"yearOfExp\": 0,\n                \"rating\": 0,\n                \"cv\": \"https://res.cloudinary.com/tobiloba98/image/upload/v1664271398/Tech-crm/c1efae28-b74e-45ac-8872-59be58d88b47-Tue%20Sep%2027%202022%2009:36:38%20GMT%2B0000%20%28Coordinated%20Universal%20Time%29-cv.pdf\",\n                \"role\": \"USER\",\n                \"picture\": null,\n                \"bio\": null,\n                \"status\": \"Active\",\n                \"residence\": \"Oyo\",\n                \"createdAt\": \"2022-09-16T08:39:44.104Z\",\n                \"updatedAt\": \"2022-09-27T09:36:38.631Z\"\n            },\n            {\n                \"id\": \"7f6e7441-21e0-482c-8bad-c29f300743b7\",\n                \"name\": \"Vicky Test\",\n                \"email\": \"vicaava@gmail.com\",\n                \"phone\": \"+2348130963670\",\n                \"track\": \"QA Engineer\",\n                \"gender\": \"Female\",\n                \"education\": \"SSCE\",\n                \"experienceLevel\": \"expert\",\n                \"portfolio\": null,\n                \"yearOfExp\": 3,\n                \"rating\": 0,\n                \"cv\": null,\n                \"role\": \"ADMIN\",\n                \"picture\": null,\n                \"bio\": \"I am a skilled and versatile developer. I've  used a lot of tools to develop world class projects.\",\n                \"status\": \"Active\",\n                \"residence\": \"Lagos\",\n                \"createdAt\": \"2022-09-14T08:11:09.545Z\",\n                \"updatedAt\": \"2022-09-27T09:42:03.804Z\"\n            }\n        ]\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "Logout",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{bearerToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/auth/logout",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"auth",
-								"logout"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{adminToken}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
+			"key": "Token",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
