@@ -8,7 +8,11 @@ on:
   push:
     branches: 
       - main
-    
+      
+  #Set your workflow to run every day of the week from Monday to Friday at 2:00 UTC
+  schedule:
+  - cron: "0 2 * * 1-5"
+  
 jobs:
   # This workflow contains a single job called "build"
   test-api:
